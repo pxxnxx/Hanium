@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp">
+    <View
+        android:id="@+id/review1"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        style="@style/box_1">
+    </View>
+    <View
+        android:id="@+id/review2"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review4"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review5"
+        style="@style/box_2"
+      >
+    </View>
+    <View
+        android:id="@+id/review6"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review7"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review8"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review9"
+        style="@style/box_2">
+    </View>
+    <View
+        android:id="@+id/review10"
+        style="@style/box_1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp">
+    </View>
+</LinearLayout>
