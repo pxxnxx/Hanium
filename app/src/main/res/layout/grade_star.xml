@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="36dp">
+    <!--평점 표현-->
     <TextView
         android:id="@+id/grade"
         android:layout_width="wrap_content"
@@ -12,5 +13,24 @@
         android:layout_marginTop="2dp"
         tools:text= "3.0/5"
         style="@style/textView_style"/>
+    <!--별 모양-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:src=""
+    >
+    </ImageView>
+    <!--사람 아이콘-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:src=""
+        >
+    </ImageView>
+    <!--명수-->
 
 </LinearLayout>
