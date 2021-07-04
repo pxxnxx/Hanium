@@ -38,7 +38,7 @@
         style="@style/textView_style"/>
 
     <LinearLayout
-        android:id="@+id/grade_line"
+        android:id="@+id/grade_line2"
         android:layout_height="36dp"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
@@ -47,14 +47,14 @@
         app:layout_constraintTop_toBottomOf="@id/name2"
         app:layout_constraintStart_toStartOf="parent">
         <include layout="@layout/grade_star"
-            android:id="@+id/grade" />
+            android:id="@+id/grade2" />
 
     </LinearLayout>
     <ScrollView
         android:id="@+id/ScrollView1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:layout_constraintTop_toBottomOf="@id/grade_line"
+        app:layout_constraintTop_toBottomOf="@id/grade_line2"
         android:layout_marginTop="10dp">
     <include layout="@layout/scroll"/>
     </ScrollView>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="36dp">
@@ -19,11 +20,10 @@
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_constraintTop_toBottomOf="@id/grade"
-        android:src="@drawable/aver3"
-    >
+        app:layout_constraintTop_toBottomOf="@id/grade"
+        android:src="@drawable/aver3">
     </ImageView>
-
+    <!---->
     <!--명수-->
 
 </LinearLayout>
