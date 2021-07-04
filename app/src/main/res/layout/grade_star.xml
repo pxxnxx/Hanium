@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         tools:text= "3.0/5"
         style="@style/textView_style"/>
     <!--별 모양-->
@@ -19,18 +19,11 @@
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:src=""
+        android:layout_constraintTop_toBottomOf="@id/grade"
+        android:src="@drawable/aver3"
     >
     </ImageView>
-    <!--사람 아이콘-->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="6dp"
-        android:layout_marginLeft="6dp"
-        android:src=""
-        >
-    </ImageView>
+
     <!--명수-->
 
 </LinearLayout>
