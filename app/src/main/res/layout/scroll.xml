@@ -3,45 +3,50 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="80dp">
-    <View
+    <include layout="@layout/review_text_s"
         android:id="@+id/review1"
+        android:layout_width="312dp"
+        android:layout_height="80dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="8dp"
-        style="@style/box_1">
-    </View>
-    <View
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review2"
-        style="@style/box_2">
-    </View>
-    <View
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
+        android:id="@+id/review3"
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review4"
-        style="@style/box_2">
-    </View>
-    <View
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review5"
         style="@style/box_2"
-      >
-    </View>
-    <View
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review6"
-        style="@style/box_2">
-    </View>
-    <View
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review7"
-        style="@style/box_2">
-    </View>
-    <View
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
         android:id="@+id/review8"
-        style="@style/box_2">
-    </View>
-    <View
-        android:id="@+id/review9"
-        style="@style/box_2">
-    </View>
-    <View
-        android:id="@+id/review10"
-        style="@style/box_1"
+        style="@style/box_2"
+        />
+    <include layout="@layout/review_text_s"
+    android:id="@+id/review9"
+    style="@style/box_2"
+    />
+    <include layout="@layout/review_text_s"
+        android:id="@+id/review1"
+        android:layout_width="312dp"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp">
-    </View>
+        android:layout_marginEnd="24dp"
+        />
 </LinearLayout>

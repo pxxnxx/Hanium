@@ -8,5 +8,5 @@
     <color name="black">#191919</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#dbdbdb</color>
-    <color name="trgray">#77EEEEEE</color>
+    <color name="tr_gray">#77EEEEEE</color>
 </resources>
