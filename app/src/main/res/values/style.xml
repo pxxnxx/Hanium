@@ -16,12 +16,12 @@
     </style>
     <!--화면1 리뷰-->
     <style name="box_1">
-        <item name="android:layout_width">360dp</item>
+        <item name="android:layout_width">312dp</item>
         <item name="android:layout_height">80dp</item>
         <item name="android:background">@drawable/round</item>
     </style>
     <style name="box_2">
-        <item name="android:layout_width">360dp</item>
+        <item name="android:layout_width">312dp</item>
         <item name="android:layout_height">80dp</item>
         <item name="android:background">@drawable/round</item>
         <item name="android:layout_marginLeft">8dp</item>
