@@ -72,7 +72,9 @@
     </ScrollView>
     <View
         android:id="@+id/bottom2"
-        style="@style/bar">
+        style="@style/bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
         <include layout="@layout/ho_scroll"/>
     </View>
 </androidx.constraintlayout.widget.ConstraintLayout>
