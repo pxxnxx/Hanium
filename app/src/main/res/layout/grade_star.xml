@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:orientation="horizontal">
+    <!--평점 표현-->
+    <TextView
+        android:id="@+id/grade"
+        android:layout_width="60dp"
+        android:layout_height="24dp"
+        android:textSize="24sp"
+        android:layout_marginStart="34dp"
+
+        android:layout_gravity="center"
+        tools:text= "3.0/5"
+        style="@style/textView_style"/>
+    <!--별 모양-->
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/aver3">
+    </ImageView>
+    <!--사람 모양-->
+    <ImageView
+        android:id="@+id/person"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:src="@drawable/person">
+    </ImageView>
+    <!--명수-->
+    <TextView
+        android:id="@+id/cnt_per"
+        style="@style/textView_style"
+        android:layout_width="48dp"
+        android:layout_height="18dp"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        tools:text="100명">
+
+    </TextView>
+</LinearLayout>

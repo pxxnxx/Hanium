@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Bold-->
+    <font
+        android:font="@font/notosans_b"
+        android:fontStyle="normal"
+        android:fontWeight="300" />
+
+    <!--regular-->
+    <font
+        android:font="@font/notosans_r"
+        android:fontStyle="normal"
+        android:fontWeight="300" />
+</font-family>

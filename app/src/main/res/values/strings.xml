@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">test_ttokshow</string>
+    <string name="head">쇼핑몰 리뷰</string>
+    <string name="keyword_Top">키워드</string>
+</resources>
