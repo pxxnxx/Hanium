@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--page1-->
 <!--dp= px * 3-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -68,17 +69,12 @@
         style="@style/textView_style"/>
 
     <!--평균 별점+ 별 모양-->
-    <LinearLayout
-        android:id="@+id/grade_line"
+    <include layout="@layout/grade_star"
         android:layout_height="36dp"
         android:layout_width="match_parent"
         android:layout_marginTop="2dp"
         app:layout_constraintTop_toBottomOf="@id/shop_R"
-        app:layout_constraintStart_toStartOf="parent">
-        <include layout="@layout/grade_star"
-            android:id="@+id/grade" />
-
-    </LinearLayout>
+        android:id="@+id/grade" />
 
     <TextView
         android:id="@+id/all_review"
@@ -87,7 +83,7 @@
         android:textSize="14sp"
         android:layout_marginEnd="34dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/grade_line"
+        app:layout_constraintTop_toBottomOf="@id/grade"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="모두보기"
         style="@style/textView_style"/>
@@ -97,11 +93,13 @@
         android:id="@+id/ScrollView1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:layout_constraintTop_toBottomOf="@id/all_review"
         android:layout_marginTop="4dp"
-        >
-        <include layout="@layout/scroll"/>
+        app:layout_constraintTop_toBottomOf="@id/all_review"
+        tools:layout_editor_absoluteX="-201dp">
+
+        <include layout="@layout/scroll" />
     </HorizontalScrollView>
+
     <View
         android:id="@+id/bottom"
         style="@style/bar"

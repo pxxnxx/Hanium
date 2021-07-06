@@ -1,53 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="186dp">
-    <include layout="@layout/review_text_s"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include layout="@layout/review_text_l"
         android:id="@+id/review1"
-        android:layout_width="312dp"
-        android:layout_height="186dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
         style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review2"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review3"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review4"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review5"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review6"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review7"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review8"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
+    <include layout="@layout/review_text_l"
         android:id="@+id/review9"
-        style="@style/box_4"
+        style="@style/box_3"
         />
-    <include layout="@layout/review_text_s"
-        android:id="@+id/review1"
-        android:layout_width="312dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
+    <include layout="@layout/review_text_l"
+        android:id="@+id/review10"
+        style="@style/box_4"
         />
 </LinearLayout>
