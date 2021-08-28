@@ -88,8 +88,8 @@ public class MainActivity extends Activity {
                 Client.main();
                 String[] out = Client.getOutput();
                 output = out;
-                for (int i = 1; i < (output.length / 5); i++) {
-                    item = new ItemData(output[5 * i + 3], output[5 * i + 4], output[5 * i], output[5 * i + 1], output[5 * i + 2]);
+                for (int i=0; i < (output.length / 5)-1; i++) {
+                    item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
                     if (i < 10) list_s.add(item);
                     list.add(item);
                 }
@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
 
 
         staticItem myApp = (staticItem)getApplicationContext();
-        myApp.setState(output[3],output[1],output.length/5 - 1);
+        myApp.setState(output[2],output[1],output.length/5 - 1);
 
 
         /**Button*/
