@@ -53,7 +53,7 @@ import java.util.Random;
 
 
 public class MainActivity extends Activity {
-    private static TextView product_name;
+    private TextView product_name;
     private TextView grade_float;
     private TextView person_many;
     private ImageButton open_bu;
@@ -83,6 +83,8 @@ public class MainActivity extends Activity {
         list_s = new ArrayList<>();
         list = new ArrayList<>();
         list_d = new ArrayList<>();
+        staticItem myApp = (staticItem)getApplicationContext();
+
         Thread CThread = new Thread() {
             public void run() {
                 Client.main();
@@ -93,6 +95,7 @@ public class MainActivity extends Activity {
                     if (i < 10) list_s.add(item);
                     list.add(item);
                 }
+                myApp.setState(output[2],output[1],output.length/5 - 1);
             client = false;
         }
     };
@@ -103,11 +106,13 @@ public class MainActivity extends Activity {
         catch (InterruptedException e) {
         e.printStackTrace();;
     }
-
-
-        staticItem myApp = (staticItem)getApplicationContext();
-        myApp.setState(output[2],output[1],output.length/5 - 1);
-
+        if(output.length<=5){
+            /**Error Dialog*/
+            dialog = new Dialog(MainActivity.this);       // Dialog 초기화
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+            dialog.setContentView(R.layout.error_popup); //xml 연결
+            showDialog();
+        }
 
         /**Button*/
         BtnOnClickListener onClickListener = new BtnOnClickListener();
@@ -139,8 +144,6 @@ public class MainActivity extends Activity {
         person_many = (TextView)findViewById(R.id.cnt_per);
         person_many.setText(Integer.toString(myApp.getCnt())+"명");
 
-
-
         /**Recycler view*/
         recyclerView = findViewById(R.id.recyclerView_s);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -159,14 +162,12 @@ public class MainActivity extends Activity {
         });
         recyclerView.setAdapter(adapter);
 
-
         /**custom star*/
         RatingBar mRatingBar =findViewById(R.id.ratingBar);
         mRatingBar.setStarCount(5);
         System.out.println("rating     "+myApp.starRating());
         mRatingBar.setStar(myApp.starRating());
         //mRatingBar.setStar(Float.parseFloat(myApp.getAvg()));
-
 
         /**Text*/
         product_name=(TextView)findViewById(R.id.name);
@@ -191,22 +192,7 @@ public class MainActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        /**Error Dialog*/
-        dialog = new Dialog(MainActivity.this);       // Dialog 초기화
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-        dialog.setContentView(R.layout.error_popup); //xml 연결
-
-        //임시 다이얼로그
-//        findViewById(R.id.test_pop).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                  showDialog(); // 아래 showDialog01() 함수 호출
-//            }});
-
     }
-
     class BtnOnClickListener implements Button.OnClickListener{
         @Override
         public void onClick(View view) {
@@ -255,7 +241,6 @@ public class MainActivity extends Activity {
         }
 
     }
-
     public void showDialog(){
         dialog.show();
         //round 맞춰주기
@@ -288,7 +273,6 @@ public class MainActivity extends Activity {
                 finish();           // 앱 종료
             }
         });
-
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -305,5 +289,4 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
-
 }
