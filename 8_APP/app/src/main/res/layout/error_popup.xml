@@ -17,7 +17,7 @@
         android:layout_height="26dp"
         android:layout_gravity="center"
         android:text="죄송합니다."
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:textSize="24sp" />
     <TextView
         style="@style/textView_style"
@@ -25,18 +25,20 @@
         android:layout_height="wrap_content"
         android:text="상품에 관련된 데이터가 충분히 수집되지 않았습니다."
         android:textSize="12sp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         />
     <Button
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:id="@+id/goBack"
         android:layout_width="62dp"
-        android:layout_height="40dp"
-        android:text="Yes"
+        android:layout_height="32dp"
+        android:text="Home"
         android:fontFamily="@font/notosans_b"
-        android:textColor="@color/black"
+        android:background="@drawable/btn_round"
+        android:textColor="@color/white"
         android:padding="0dp"
+        android:elevation="10dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="40dp"/>
 
 </FrameLayout>

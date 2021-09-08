@@ -109,6 +109,11 @@ public class MainActivity extends Activity {
             dialog.setContentView(R.layout.error_popup); //xml 연결
             showDialog();
         }
+        /**Error Dialog*/
+        dialog = new Dialog(MainActivity.this);       // Dialog 초기화
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        dialog.setContentView(R.layout.error_popup); //xml 연결
+        showDialog();
 
         /**Button*/
         BtnOnClickListener onClickListener = new BtnOnClickListener();
@@ -254,12 +259,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 try {
-                    //TODO 액티비티 화면 재갱신 시키는 코드
-                    Intent intent = getIntent();
-                    finish(); //현재 액티비티 종료 실시
-                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                    startActivity(intent); //현재 액티비티 재실행 실시
-                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+                    Intent intent =new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent);
+//                    //TODO 액티비티 화면 재갱신 시키는 코드
+//                    Intent intent = getIntent();
+//                    finish(); //현재 액티비티 종료 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+//                    startActivity(intent); //현재 액티비티 재실행 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
                 }
                 catch (Exception e){
                     e.printStackTrace();
