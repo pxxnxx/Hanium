@@ -21,13 +21,13 @@
         android:layout_height="28dp"
         android:layout_gravity="center"
         android:layout_marginEnd="116dp"
-        android:background="@drawable/camera2"
+        android:background="@drawable/camera"
         android:padding="4dp" />
 
     <ImageButton
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="@drawable/ic_state"
+        android:background="@drawable/setting"
         android:drawableTint="@color/purple"
         android:layout_marginStart="116dp"
         android:padding="4dp"

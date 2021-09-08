@@ -18,12 +18,6 @@ import java.util.ArrayList;
 
 public class Zoom_Review extends AppCompatActivity {
 
-    private TextView product_name;
-    private TextView content;
-    private TextView grade;
-    private TextView cite;
-    private TextView id;
-    private TextView date;
     private ImageView perGrade;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +32,17 @@ public class Zoom_Review extends AppCompatActivity {
         staticItem myApp = (staticItem)getApplicationContext();
 
         /**Text*/
-        product_name = (TextView)findViewById(R.id.name);
+        TextView product_name = (TextView) findViewById(R.id.name);
         product_name.setText(myApp.getProName());
-        content=(TextView)findViewById(R.id.contents);
+        TextView content = (TextView) findViewById(R.id.contents);
         content.setText(list.getScontents());
-        grade=(TextView)findViewById(R.id.grade_num);
+        TextView grade = (TextView) findViewById(R.id.grade_num);
         grade.setText(list.getSgrade());
-        cite=(TextView)findViewById(R.id.cite);
+        TextView cite = (TextView) findViewById(R.id.cite);
         cite.setText(list.getScite());
-        id=(TextView)findViewById(R.id.reviewId);
+        TextView id = (TextView) findViewById(R.id.reviewId);
         id.setText(list.getSId());
-        date=(TextView)findViewById(R.id.review_date);
+        TextView date = (TextView) findViewById(R.id.review_date);
         date.setText(list.getSdate());
 
         /**ImageView*/
@@ -83,6 +77,10 @@ public class Zoom_Review extends AppCompatActivity {
                 case R.id.cameraBtn:
                     Intent scan = new Intent(getApplicationContext(), ScannerActivity.class);
                     startActivity(scan);
+                    break;
+                case R.id.home_btn:
+                    Intent intent_home = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent_home);
                     break;
             }
         }

@@ -63,11 +63,11 @@ public class LoadingActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(getBaseContext(), ScannerActivity.class);
+                Intent intent = new Intent(getBaseContext(), HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 1500);
+        }, 3000);
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

@@ -53,16 +53,12 @@ import java.util.Random;
 
 
 public class MainActivity extends Activity {
-    private TextView product_name;
-    private TextView grade_float;
-    private TextView person_many;
     private ImageButton open_bu;
     private Dialog dialog;
     private ImageView iv_image;
     private ImageView pro_image;
     private ItemData item;
     private ImageButton tts;
-    private RecyclerView recyclerView;
     private Adapter adapter;
     public ArrayList<ItemData> list_s;
     public ArrayList<ItemData> list;
@@ -137,15 +133,15 @@ public class MainActivity extends Activity {
         tts.setOnClickListener(onClickListener);
 
         /**Text View*/
-        product_name = (TextView)findViewById(R.id.name);
+        TextView product_name = (TextView) findViewById(R.id.name);
         product_name.setText(myApp.getProName());
-        grade_float = (TextView)findViewById(R.id.gradef);
+        TextView grade_float = (TextView) findViewById(R.id.gradef);
         grade_float.setText(myApp.getAvg()+"/5");
-        person_many = (TextView)findViewById(R.id.cnt_per);
+        TextView person_many = (TextView) findViewById(R.id.cnt_per);
         person_many.setText(Integer.toString(myApp.getCnt())+"명");
 
         /**Recycler view*/
-        recyclerView = findViewById(R.id.recyclerView_s);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_s);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         RecyclerDeco decoration_Width = new RecyclerDeco(26,26,0,0);
@@ -170,7 +166,7 @@ public class MainActivity extends Activity {
         //mRatingBar.setStar(Float.parseFloat(myApp.getAvg()));
 
         /**Text*/
-        product_name=(TextView)findViewById(R.id.name);
+        product_name =(TextView)findViewById(R.id.name);
         product_name.setSingleLine(true);    // 한줄로 표시하기
         product_name.setEllipsize(TextUtils.TruncateAt.MARQUEE); // 흐르게 만들기
         product_name.setSelected(true);      // 선택하기
@@ -237,6 +233,10 @@ public class MainActivity extends Activity {
                 case R.id.ttsBtn:
                     //TODO 여기다 쓰셈
                     break;
+                case R.id.home_btn:
+                    Intent intent_home = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(intent_home);
+                    break;
             }
         }
 
@@ -249,8 +249,8 @@ public class MainActivity extends Activity {
         dialog.setCanceledOnTouchOutside(false);
         // 다이얼로그 뒤로가기 버튼 방지
         dialog.setCancelable(false);
-        Button yesBtn = dialog.findViewById(R.id.yesB);
-        yesBtn.setOnClickListener(new View.OnClickListener() {
+        Button goBackBtn = dialog.findViewById(R.id.goBack);
+        goBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -267,12 +267,12 @@ public class MainActivity extends Activity {
                 dialog.dismiss(); // 다이얼로그 닫기
             }
         });
-        dialog.findViewById(R.id.noB).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();           // 앱 종료
-            }
-        });
+//        dialog.findViewById(R.id.noB).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();           // 앱 종료
+//            }
+//        });
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
