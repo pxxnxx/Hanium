@@ -6,6 +6,8 @@ public class staticItem extends Application {
     private String avg;
     private String proName;
     private int cnt;
+    private boolean tts=true;
+
     @Override
     public void onCreate() {
         //전역 변수 초기화
@@ -19,13 +21,17 @@ public class staticItem extends Application {
     public void onTerminate() {
         super.onTerminate();
     }
-
+    public boolean isTts() {
+        return tts;
+    }
+    public void setTts(boolean tts) {
+        this.tts = tts;
+    }
     public void setState(String avg, String proName, int cnt){
         this.avg=avg;
         this.proName=proName;
         this.cnt=cnt;
     }
-
     public String getProName(){
         return proName;
     }

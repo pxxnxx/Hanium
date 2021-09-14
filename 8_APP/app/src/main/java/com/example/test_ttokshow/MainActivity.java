@@ -5,12 +5,9 @@ import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -25,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,12 +40,7 @@ import com.hedgehog.ratingbar.RatingBar;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class MainActivity extends Activity {
@@ -63,7 +54,6 @@ public class MainActivity extends Activity {
     public ArrayList<ItemData> list_s;
     public ArrayList<ItemData> list;
     public ArrayList<ItemData> list_d;
-    private static final String TAG = "MainActivity";
     public String[] output = new String[10];
     public static Boolean client = true;
 
@@ -109,40 +99,40 @@ public class MainActivity extends Activity {
             dialog.setContentView(R.layout.error_popup); //xml 연결
             showDialog();
         }
-        /**Error Dialog*/
-        dialog = new Dialog(MainActivity.this);       // Dialog 초기화
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-        dialog.setContentView(R.layout.error_popup); //xml 연결
-        showDialog();
+
+        /**TTS*/
+        if(myApp.isTts()){
+            //Todo tts 실행해주면 돼}
+        }
 
         /**Button*/
         BtnOnClickListener onClickListener = new BtnOnClickListener();
         //inflation layout
-        open_bu = (ImageButton) findViewById(R.id.open);
+        open_bu = findViewById(R.id.open);
         open_bu.setOnClickListener(onClickListener);
 
         //all review
-        Button all_review = (Button) findViewById(R.id.all_review);
+        Button all_review = findViewById(R.id.all_review);
         all_review.setOnClickListener(onClickListener);
 
         //scanner btn
-        ImageButton camera = (ImageButton) findViewById(R.id.cameraBtn);
+        ImageButton camera = findViewById(R.id.cameraBtn);
         camera.setOnClickListener(onClickListener);
 
         //home btn
-        ImageButton home =(ImageButton)findViewById(R.id.home_btn);
+        ImageButton home = findViewById(R.id.home_btn);
         home.setOnClickListener(onClickListener);
 
         //tts
-        tts=(ImageButton)findViewById(R.id.ttsBtn);
+        tts= findViewById(R.id.ttsBtn);
         tts.setOnClickListener(onClickListener);
 
         /**Text View*/
-        TextView product_name = (TextView) findViewById(R.id.name);
+        TextView product_name = findViewById(R.id.name);
         product_name.setText(myApp.getProName());
-        TextView grade_float = (TextView) findViewById(R.id.gradef);
+        TextView grade_float = findViewById(R.id.gradef);
         grade_float.setText(myApp.getAvg()+"/5");
-        TextView person_many = (TextView) findViewById(R.id.cnt_per);
+        TextView person_many = findViewById(R.id.cnt_per);
         person_many.setText(Integer.toString(myApp.getCnt())+"명");
 
         /**Recycler view*/
@@ -168,26 +158,20 @@ public class MainActivity extends Activity {
         mRatingBar.setStarCount(5);
         System.out.println("rating     "+myApp.starRating());
         mRatingBar.setStar(myApp.starRating());
-        //mRatingBar.setStar(Float.parseFloat(myApp.getAvg()));
 
         /**Text*/
-        product_name =(TextView)findViewById(R.id.name);
+        product_name = findViewById(R.id.name);
         product_name.setSingleLine(true);    // 한줄로 표시하기
         product_name.setEllipsize(TextUtils.TruncateAt.MARQUEE); // 흐르게 만들기
         product_name.setSelected(true);      // 선택하기
 
         /**image*/
-        iv_image = (ImageView)findViewById(R.id.keywordbox);
+        iv_image = findViewById(R.id.keywordbox);
         FirebaseStorage storage = FirebaseStorage.getInstance("gs://ttks-161718.appspot.com/");
         StorageReference storageRef = storage.getReference();
-        storageRef.child(output[0]).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(getApplicationContext())
-                        .load(uri)
-                        .into(iv_image);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        storageRef.child(output[0]).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext())
+                .load(uri)
+                .into(iv_image)).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
                 Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show();
@@ -204,12 +188,12 @@ public class MainActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.open:
-                    LinearLayout inflatedLayout = (LinearLayout) findViewById(R.id.inflatedlayout);
+                    LinearLayout inflatedLayout = findViewById(R.id.inflatedlayout);
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     if (!open_bu.isSelected()) {
                         inflater.inflate(R.layout.inflated_layout, inflatedLayout);
                         open_bu.setSelected(true);
-                        pro_image=(ImageView)findViewById(R.id.productImggggg);
+                        pro_image= findViewById(R.id.productImggggg);
                         FirebaseStorage storage2 = FirebaseStorage.getInstance("gs://ttks-161718.appspot.com/");
                         StorageReference storageRef = storage2.getReference();
                         storageRef.child("pro_img/"+output[0]+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -219,12 +203,7 @@ public class MainActivity extends Activity {
                                         .load(uri)
                                         .into(pro_image);
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull @NotNull Exception e) {
-                                Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        }).addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show());
 
                     } else {
                         inflatedLayout.removeAllViews();
@@ -255,31 +234,16 @@ public class MainActivity extends Activity {
         // 다이얼로그 뒤로가기 버튼 방지
         dialog.setCancelable(false);
         Button goBackBtn = dialog.findViewById(R.id.goBack);
-        goBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent intent =new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
-//                    //TODO 액티비티 화면 재갱신 시키는 코드
-//                    Intent intent = getIntent();
-//                    finish(); //현재 액티비티 종료 실시
-//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-//                    startActivity(intent); //현재 액티비티 재실행 실시
-//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-                dialog.dismiss(); // 다이얼로그 닫기
+        goBackBtn.setOnClickListener(view -> {
+            try {
+                Intent intent =new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
             }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            dialog.dismiss(); // 다이얼로그 닫기
         });
-//        dialog.findViewById(R.id.noB).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();           // 앱 종료
-//            }
-//        });
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

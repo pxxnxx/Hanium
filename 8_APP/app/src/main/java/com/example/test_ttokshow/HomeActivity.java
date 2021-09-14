@@ -16,6 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton ttsBtn;
     private TextView info;
     private ImageView icon;
+    staticItem myApp = (staticItem)getApplicationContext();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,12 +79,12 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case R.id.ttsOnOff:
                     if(!ttsBtn.isSelected()){
+                        myApp.setTts(true);
                         ttsBtn.setSelected(true);
-                        //TODO 음성 켜는 기능 추가
                     }
                     else{
+                        myApp.setTts(false);
                         ttsBtn.setSelected(false);
-                        //TODO 음성 끄는 기능 추가
                     }
                     break;
             }
