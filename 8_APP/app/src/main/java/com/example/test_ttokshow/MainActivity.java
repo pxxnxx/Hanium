@@ -1,5 +1,6 @@
 package com.example.test_ttokshow;
 
+import static android.speech.tts.TextToSpeech.ERROR;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
@@ -12,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +52,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.util.Locale;
 
 public class MainActivity extends Activity {
     private ImageButton open_bu;
@@ -66,6 +68,7 @@ public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
     public String[] output = new String[10];
     public static Boolean client = true;
+    private TextToSpeech TTS;
 
 
     @Override
@@ -193,6 +196,15 @@ public class MainActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show();
             }
         });
+
+        TTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != ERROR) {
+                    TTS.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
     }
     class BtnOnClickListener implements Button.OnClickListener{
         @Override
@@ -236,7 +248,7 @@ public class MainActivity extends Activity {
                     startActivity(scan);
                     break;
                 case R.id.ttsBtn:
-                    //TODO 여기다 쓰셈
+                    TTS.speak("apple and banana", TextToSpeech.QUEUE_ADD,null); 
                     break;
                 case R.id.home_btn:
                     Intent intent_home = new Intent(getApplicationContext(), HomeActivity.class);
@@ -296,4 +308,5 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
+
 }
