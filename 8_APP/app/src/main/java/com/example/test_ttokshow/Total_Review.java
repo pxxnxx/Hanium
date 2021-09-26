@@ -27,8 +27,6 @@ public class Total_Review extends AppCompatActivity {
     private ArrayList<ItemData> list;
     private int num=0;
     private Adapter adapter;
-    static String pm;
-    static String rf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +39,12 @@ public class Total_Review extends AppCompatActivity {
 
         staticItem myApp = (staticItem)getApplicationContext();
 
-        View grade =(View)findViewById(R.id.grade_total);
+        View grade = findViewById(R.id.grade_total);
 
         /**Text View*/
-        TextView grade_float = (TextView) findViewById(R.id.gradef);
+        TextView grade_float = findViewById(R.id.gradef);
         grade_float.setText(myApp.getAvg()+"/5");
-        TextView person_many = (TextView) findViewById(R.id.cnt_per);
+        TextView person_many = findViewById(R.id.cnt_per);
         person_many.setText(myApp.getCnt() +"명");
 
         /**custom star*/
@@ -58,15 +56,15 @@ public class Total_Review extends AppCompatActivity {
         BtnOnClickListener onClickListener = new BtnOnClickListener();
 
         //ret Button
-        ImageButton retBox = (ImageButton) findViewById(R.id.retButton);
+        ImageButton retBox = findViewById(R.id.retButton);
         retBox.setOnClickListener(onClickListener);
 
         //scanner btn
-        ImageButton camera = (ImageButton) findViewById(R.id.cameraBtn);
+        ImageButton camera = findViewById(R.id.cameraBtn);
         camera.setOnClickListener(onClickListener);
 
         //home btn
-        ImageButton home =(ImageButton)findViewById(R.id.home_btn);
+        ImageButton home = findViewById(R.id.home_btn);
         home.setOnClickListener(onClickListener);
 
         /**Recycler View*/
@@ -94,7 +92,7 @@ public class Total_Review extends AppCompatActivity {
 
 
         /**Progress bar + Recycler View*/
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.progressbar);
         //progressBar.setVisibility(View.GONE);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
@@ -133,12 +131,9 @@ public class Total_Review extends AppCompatActivity {
             ItemData tmp= list.get(i);
             adapter.addItem(tmp);
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
-            }
+        new Handler().postDelayed(() -> {
+            adapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.GONE);
         },1000);
         num=end;
     }

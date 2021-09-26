@@ -39,8 +39,10 @@ public class ScannerActivity extends AppCompatActivity {
             Client.send = re;
             Client.cam = true;
             MainActivity.client = true;
-            Intent main = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(main);
+            Intent intent_nxt;
+            if(re.length()==13)intent_nxt = new Intent(getApplicationContext(),MainActivity.class);
+            else intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
+            startActivity(intent_nxt);
             finish();
         }
 

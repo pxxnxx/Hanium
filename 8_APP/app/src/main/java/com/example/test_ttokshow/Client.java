@@ -14,7 +14,10 @@ import java.nio.ByteOrder;
     public class Client extends AppCompatActivity {
         private static String[] output;
         static String send = "8801007022635";
+        static String token;
+        static String modelNum;
         static Boolean cam = true;
+        static Boolean needMatch = true;
         public static void main(String... args) {
             try (Socket client = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress("18.216.76.16", 9999);

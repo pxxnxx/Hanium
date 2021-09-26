@@ -3,7 +3,6 @@ package com.example.test_ttokshow;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.test_ttokshow.Recy.ItemData;
 
-import java.util.ArrayList;
 
 public class Zoom_Review extends AppCompatActivity {
 
@@ -32,36 +30,36 @@ public class Zoom_Review extends AppCompatActivity {
         staticItem myApp = (staticItem)getApplicationContext();
 
         /**Text*/
-        TextView product_name = (TextView) findViewById(R.id.name);
+        TextView product_name = findViewById(R.id.name);
         product_name.setText(myApp.getProName());
-        TextView content = (TextView) findViewById(R.id.contents);
+        TextView content = findViewById(R.id.contents);
         content.setText(list.getScontents());
-        TextView grade = (TextView) findViewById(R.id.grade_num);
+        TextView grade = findViewById(R.id.grade_num);
         grade.setText(list.getSgrade());
-        TextView cite = (TextView) findViewById(R.id.cite);
+        TextView cite = findViewById(R.id.cite);
         cite.setText(list.getScite());
-        TextView id = (TextView) findViewById(R.id.reviewId);
+        TextView id = findViewById(R.id.reviewId);
         id.setText(list.getSId());
-        TextView date = (TextView) findViewById(R.id.review_date);
+        TextView date = findViewById(R.id.review_date);
         date.setText(list.getSdate());
 
         /**ImageView*/
-        perGrade=(ImageView)findViewById(R.id.per_grade);
+        perGrade= findViewById(R.id.per_grade);
         perRank(Integer.parseInt(list.getSgrade()));
 
         /**Button*/
         BtnOnClickListener onClickListener = new BtnOnClickListener();
 
         //ret Button
-        ImageButton retBox = (ImageButton) findViewById(R.id.retButton);
+        ImageButton retBox = findViewById(R.id.retButton);
         retBox.setOnClickListener(onClickListener);
 
         //scanner btn
-        ImageButton camera = (ImageButton) findViewById(R.id.cameraBtn);
+        ImageButton camera = findViewById(R.id.cameraBtn);
         camera.setOnClickListener(onClickListener);
 
         //home btn
-        ImageButton home =(ImageButton)findViewById(R.id.home_btn);
+        ImageButton home = findViewById(R.id.home_btn);
         home.setOnClickListener(onClickListener);
 
 
@@ -87,7 +85,6 @@ public class Zoom_Review extends AppCompatActivity {
     }
 
     public void perRank(int star){
-        Drawable drawable = getResources().getDrawable(R.drawable.aver1);
         switch (star){
             case 5:
                 perGrade.setImageResource(R.drawable.aver5);

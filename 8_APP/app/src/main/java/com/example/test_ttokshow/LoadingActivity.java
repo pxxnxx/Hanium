@@ -22,6 +22,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     private ImageView load;
     private static final String TAG = "HomeActivity";
+    private boolean fMsg=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class LoadingActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
 
-        load=(ImageView)findViewById(R.id.loading);
+        load= findViewById(R.id.loading);
         Task<String> tmp= FirebaseMessaging.getInstance().getToken();
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -47,6 +48,8 @@ public class LoadingActivity extends AppCompatActivity {
                         String msg = getString(R.string.msg_token_fmt, token);
                         Log.d(TAG, msg);
                         //Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                        fMsg=true;
                     }
                 });
 
@@ -63,7 +66,9 @@ public class LoadingActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                Intent intent;
+                if(!fMsg)intent = new Intent(getBaseContext(), HomeActivity.class);
+                else intent=new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
