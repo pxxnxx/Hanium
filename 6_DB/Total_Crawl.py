@@ -56,6 +56,7 @@ while cnt < len(result):
         con.commit()
         continue
     average(pro)
+    print(cnt)
 
 # AvgAll
 # CalAvgAll="""select round(avg(star_rank),2), barcord_id  from review

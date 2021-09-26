@@ -13,8 +13,7 @@ driver = webdriver.Chrome(options=options)
 data_list = []
  
 product = "CJ제일제당 전립소 쏘팔메토"
-plusUrl = urllib.parse.quote_plus(product)
-url = f'http://www.ssg.com/search.ssg?target=all&query={plusUrl}'
+url = "https://store.steampowered.com/"
 driver.get(url)
 driver.find_element_by_css_selector('.thmb').click()
 

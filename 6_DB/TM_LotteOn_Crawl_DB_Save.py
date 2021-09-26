@@ -46,6 +46,8 @@ def crawl(pro,cur):
         table = driver.find_element_by_class_name('productReviewWrap')
         nodata = table.find_element_by_tag_name('p').text
         print(nodata)
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
         return nodata
         #driver.quit()
         #sys.exit()
@@ -53,13 +55,15 @@ def crawl(pro,cur):
         review_total = driver.find_element_by_css_selector('.reviewCount').text 
         review_total = review_total.replace("건","")
         review_total = int(review_total.replace(",",""))
+        if review_total > 1000:
+            print("리뷰가 1000개 이상이기 때문에 건너뜀")
+            return str(review_total)
         review_grade = driver.find_element_by_css_selector('.staring').text
         review_grade = review_grade.replace("평점\n","")
         print("평점:", review_grade) 
         print("리뷰 개수:",review_total)
         print("기존 리뷰 개수", count)
         print("필요한 리뷰 개수 :", review_total-count)
-
     #페이지별 리뷰 개수
     review_per_page = 5
     total_page = (review_total-count) / review_per_page 
@@ -105,4 +109,6 @@ def crawl(pro,cur):
     query_lotte="""UPDATE product SET lotte=%s WHERE barcord_id=%s """
     cur.execute(query_lotte,(review_total,pro[0]))
     b = "수집 성공"
+    driver.close()
+    driver.switch_to.window(driver.window_handles[0])
     return b

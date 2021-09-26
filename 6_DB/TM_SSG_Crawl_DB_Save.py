@@ -51,11 +51,14 @@ def crawl(pro,cur):
         return nodata
     except Exception:
         # 최신순 클릭
-        driver.find_element_by_css_selector('.cdtl_opt').click()
+        driver.find_element_by_xpath('//*[@id="cmt_select_sort"]/div/a').click()
         driver.find_element_by_xpath('//*[@id="cmt_select_sort"]/div/div/ul/li[2]').click()
     
     review_total = driver.find_element_by_css_selector('.num').text
     review_total = int(review_total.replace(",",""))
+    if review_total > 1000 :
+        print("리뷰가 1000개 이상이기 때문에 건너뜀")
+        return str(review_total)
     review_grade = driver.find_element_by_css_selector('.cdtl_grade_total').text
     print("평점:", review_grade)
     print("리뷰 개수:",review_total)
