@@ -11,13 +11,15 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-    public class Client extends AppCompatActivity {
+import java.nio.charset.StandardCharsets;
+
+public class Client extends AppCompatActivity {
         private static String[] output;
-        static String send = "8801007022635";
-        static String token;
-        static String modelNum;
+        static String send = "5012501081100";
+        static String token = "duVCxvvKRHetPGmc-qO-ti:APA91bGX4POqrviJtSyK8yrtsKeam7tMWvsbd8f_sQjXIHxJYTD8xwF8jjnRDeXRvJoICVO6w72TVW2ZZDJ-rYsyLvu-agWx3kPddsJ-8ND0LArg16h7QvOf9s83ur_oqiCsvX2SlCbx";
+        static String modelNum = "0#";
         static Boolean cam = true;
-        static Boolean needMatch = true;
+        static Boolean needMatch = false;
         public static void main(String... args) {
             try (Socket client = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress("18.216.76.16", 9999);
@@ -27,17 +29,25 @@ import java.nio.ByteOrder;
                 try (OutputStream sender = client.getOutputStream(); InputStream receiver = client.getInputStream()) {
 
                     for (int i = 0; i < 1; i++) {
-
-                        if (cam){
-                            byte[] data = send.getBytes();
+                        if (needMatch){
+                            String mat = modelNum+token;
+                            byte[] data = mat.getBytes();
                             ByteBuffer b = ByteBuffer.allocate(4);
                             b.order(ByteOrder.LITTLE_ENDIAN);
                             b.putInt(data.length);
                             sender.write(b.array(),0,4);
                             sender.write(data);
+
+                        }
+                        if (cam && !needMatch) { //!needMatch 오류 제어
+                            byte[] data = send.getBytes();
+                            ByteBuffer b = ByteBuffer.allocate(4);
+                            b.order(ByteOrder.LITTLE_ENDIAN);
+                            b.putInt(data.length);
+                            sender.write(b.array(), 0, 4);
+                            sender.write(data);
                             cam = false;
                         }
-
                         byte[] data = new byte[4];
                         //sender.write(data,0,4);
                         receiver.read(data, 0, 4);
@@ -50,12 +60,13 @@ import java.nio.ByteOrder;
 
                         String msg = new String(data, "UTF-8");
                         output = msg.split("#");
-                        System.out.println("ABC"+output.length);
+                        System.out.println("ABC" + output.length);
                         System.out.println(output[0]);
                         System.out.println(output[1]);
                         System.out.println(output[2]);
                         System.out.println(output[3]);
                         System.out.println(output[4]);
+
                     }
 
                 }

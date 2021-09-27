@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.test_ttokshow.Recy.ItemData;
 import com.example.test_ttokshow.Scanner.ScannerCaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -36,12 +37,24 @@ public class ScannerActivity extends AppCompatActivity {
             String re = scanResult.getContents();
             Log.d("onActivityResult", "onActivityResult: ." + re);
             Toast.makeText(this, re, Toast.LENGTH_LONG).show();
-            Client.send = re;
-            Client.cam = true;
-            MainActivity.client = true;
             Intent intent_nxt;
-            if(re.length()==13)intent_nxt = new Intent(getApplicationContext(),MainActivity.class);
-            else intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
+            if(re.length()==13) {
+                Client.send = re;
+                Client.cam = true;
+                MainActivity.client = true;
+                intent_nxt = new Intent(getApplicationContext(), MainActivity.class);
+            }
+            else {
+                Client.modelNum = re;
+                Client.needMatch = true;
+                Thread CThread = new Thread() {
+                    public void run() {
+                        Client.main();
+                    }
+                };
+                Client.needMatch = false;
+                intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
+            }
             startActivity(intent_nxt);
             finish();
         }
