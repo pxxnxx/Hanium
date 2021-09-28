@@ -31,7 +31,7 @@ def fetchReview(codeNum):
 
 def get_noun(news):
     okt = Okt()
-    noun = okt.phrases(news)
+    noun = okt.nouns(news)
     print("1")
     for i,v in enumerate(noun):
         if len(v) < 10:
@@ -52,8 +52,8 @@ def get_noun(news):
 
 def visualize(noun_list):
     wc = WordCloud(font_path='./namsan.ttf', background_color="white",width=1000,height=1000,max_words=100,max_font_size=300)
-    wc.generate_from_frequencies(dict(noun_list[0]))
-    wc.to_file('keyword.png')
+    #wc.generate_from_frequencies(dict(noun_list[0]))
+    #wc.to_file('keyword.png')
 
 def excuteMining(maxLen,barcode):
     review_list = [x[0] for x in fetchReview(barcode)]
@@ -64,10 +64,16 @@ def excuteMining(maxLen,barcode):
     # print(strReview)
     if len(strReview) > maxLen:
         strReview = strReview[0:maxLen]
-    print(strReview)
-    visualize(get_noun(strReview))
+    #print(strReview)
+    res = get_noun(strReview)
+    visualize(res)
     # newVisualize(get_noun(strReview))
-    print("visualization done. :)")
+    print("caculating is done:)")
+    #res.sort(key=lambda x : x[1],reverse=True)
+    print(res)
+
+
+
 
 if __name__=="__main__":
     # sql="""select barcord_id from review group by barcord_id"""
@@ -85,4 +91,5 @@ if __name__=="__main__":
     con.commit()
     cur_tm.close()
     """
-    excuteMining(100000000,"8801007160337")
+    #excuteMining(1000000,"8801007160337")
+    excuteMining(1000000, "5410126116953")
