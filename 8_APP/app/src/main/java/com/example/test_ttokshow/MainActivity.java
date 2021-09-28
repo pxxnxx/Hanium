@@ -279,13 +279,5 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거한다.
-//        if (tts != null) {
-//            tts.stop();
-//            tts.shutdown();
-//            tts = null;
-//        }
-//    }
+
 }
