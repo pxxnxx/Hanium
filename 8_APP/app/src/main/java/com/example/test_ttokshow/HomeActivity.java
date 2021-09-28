@@ -4,18 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.Locale;
+
+import static android.speech.tts.TextToSpeech.ERROR;
 
 public class HomeActivity extends AppCompatActivity {
     private ImageButton deviceBtn;
     private ImageButton ttsBtn;
     private TextView info;
     private ImageView icon;
+    private TextToSpeech TTS;
     staticItem myApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +59,25 @@ public class HomeActivity extends AppCompatActivity {
         ttsBtn=findViewById(R.id.ttsOnOff);
         ttsBtn.setOnClickListener(onClickListener);
 
+        /**TTS TEST*/
+        TTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result= TTS.setLanguage(Locale.KOREAN);
+                    if(result ==TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                        Toast.makeText(HomeActivity.this,"지원하지 않는 언어",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        if(myApp.isTts()){
+            Log.d("TTS", "onCreate:"+myApp.isTts());
+//            TTS.setPitch((float) 0.1);      // 음량
+//            TTS.setSpeechRate((float) 1.0); // 재생속도
+            TTS.speak("welcome", TextToSpeech.QUEUE_FLUSH,null,null);
+        }
+
     }
     class BtnOnClickListener implements Button.OnClickListener {
         @Override
@@ -80,14 +109,16 @@ public class HomeActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.ttsOnOff:
-                    if(!ttsBtn.isSelected()){
-                        myApp.setTts(true);
-                        ttsBtn.setSelected(true);
-                    }
-                    else{
-                        myApp.setTts(false);
-                        ttsBtn.setSelected(false);
-                    }
+//                    if(!ttsBtn.isSelected()){
+//                        myApp.setTts(true);
+//                        ttsBtn.setSelected(true);
+//                    }
+//                    else{
+//                        myApp.setTts(false);
+//                        ttsBtn.setSelected(false);
+//                    }
+                    TTS.speak("welcome", TextToSpeech.QUEUE_FLUSH,null,null);
+
                     break;
             }
         }

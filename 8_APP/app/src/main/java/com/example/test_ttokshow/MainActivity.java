@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -102,8 +103,24 @@ public class MainActivity extends Activity {
         }
 
         /**TTS*/
+        TTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result= TTS.setLanguage(Locale.KOREAN);
+                    if(result ==TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                        Toast.makeText(MainActivity.this,"지원하지 않는 언어",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
         if(myApp.isTts()){
-            //Todo tts 실행해주면 돼}
+            if(myApp.isTts()){
+                Log.d("TTS", "onCreate:"+myApp.isTts());
+//            TTS.setPitch((float) 0.1);      // 음량
+//            TTS.setSpeechRate((float) 1.0); // 재생속도
+                TTS.speak("welcome", TextToSpeech.QUEUE_FLUSH,null,null);
+            }
         }
 
         /**Button*/
@@ -179,14 +196,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        TTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != ERROR) {
-                    TTS.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
     }
     class BtnOnClickListener implements Button.OnClickListener{
         @Override
@@ -225,7 +234,7 @@ public class MainActivity extends Activity {
                     startActivity(scan);
                     break;
                 case R.id.ttsBtn:
-                    TTS.speak("apple and banana", TextToSpeech.QUEUE_ADD,null); 
+                    TTS.speak("apple and banana", TextToSpeech.QUEUE_FLUSH,null,null);
                     break;
                 case R.id.home_btn:
                     Intent intent_home = new Intent(getApplicationContext(), HomeActivity.class);
