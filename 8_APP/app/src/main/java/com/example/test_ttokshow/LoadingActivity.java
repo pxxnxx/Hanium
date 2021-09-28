@@ -21,8 +21,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class LoadingActivity extends AppCompatActivity {
 
     private ImageView load;
-    private static final String TAG = "HomeActivity";
-    private boolean fMsg=false;
+    private boolean fMsg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +29,11 @@ public class LoadingActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
 
+        fMsg=false;
+
+        String TAG = "HomeActivity";
+
         load= findViewById(R.id.loading);
-        Task<String> tmp= FirebaseMessaging.getInstance().getToken();
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -56,23 +58,29 @@ public class LoadingActivity extends AppCompatActivity {
         startLoading();
     }
     private void startLoading() {
+
         Handler handler = new Handler();
         Glide.with(LoadingActivity.this)
                 .asGif()    // GIF 로딩
                 .load( R.raw.loading )
                 .diskCacheStrategy( DiskCacheStrategy.RESOURCE )    // Glide에서 캐싱한 리소스와 로드할 리소스가 같을때 캐싱된 리소스 사용
                 .into(load );
+
+        Intent intent = null;
+        if(!fMsg)intent = new Intent(getApplicationContext(), HomeActivity.class);
+        else intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent finalIntent = intent;
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent intent;
-                if(!fMsg)intent = new Intent(getBaseContext(), HomeActivity.class);
-                else intent=new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
+                startActivity(finalIntent);
                 finish();
             }
         }, 3000);
+
+
+
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

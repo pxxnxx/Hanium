@@ -1,8 +1,6 @@
 package com.example.test_ttokshow;
 
-import static android.speech.tts.TextToSpeech.ERROR;
 import android.app.Activity;
-import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -30,12 +28,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.test_ttokshow.Recy.Adapter;
 import com.example.test_ttokshow.Recy.ItemData;
-import com.example.test_ttokshow.Recy.OnReviewItemClickListener;
 import com.example.test_ttokshow.Recy.RecyclerDeco;
 import com.example.test_ttokshow.Recy.ViewType;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hedgehog.ratingbar.RatingBar;
@@ -43,12 +39,9 @@ import com.hedgehog.ratingbar.RatingBar;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Random;
 import java.util.Locale;
-=======
 
->>>>>>> 77997dbeebba589cb76873984cd644d75df584e9
+import static android.speech.tts.TextToSpeech.ERROR;
 
 public class MainActivity extends Activity {
     private ImageButton open_bu;

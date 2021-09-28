@@ -16,13 +16,15 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton ttsBtn;
     private TextView info;
     private ImageView icon;
-    staticItem myApp = (staticItem)getApplicationContext();
+    staticItem myApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
+
+        myApp= (staticItem) getApplicationContext();
 
         /**TextView*/
         info=findViewById(R.id.comment);
