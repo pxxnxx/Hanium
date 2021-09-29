@@ -11,8 +11,8 @@ public class staticItem extends Application {
     @Override
     public void onCreate() {
         //전역 변수 초기화
-        avg = "";
-        proName="";
+        avg = "0.0";
+        proName=" ";
         cnt=0;
         super.onCreate();
     }
@@ -45,7 +45,8 @@ public class staticItem extends Application {
     }
 
     public float starRating(){
-        float fAvg= Float.parseFloat(avg);
+        float fAvg=0.0f;
+        if(avg.equals(""))fAvg= Float.parseFloat(avg);
         int d= (int)fAvg;
         float f = fAvg-d;
         float half= (float)0.5;

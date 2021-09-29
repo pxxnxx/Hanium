@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     public ArrayList<ItemData> list_s;
     public ArrayList<ItemData> list;
     public ArrayList<ItemData> list_d;
-    public String[] output = new String[10];
+    public String[] output = new String[0];
     public static Boolean client = true;
     private TextToSpeech TTS;
 
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
                     if (i < 10) list_s.add(item);
                     list.add(item);
                 }
-                myApp.setState(output[2],output[1],output.length/5 - 1);
+                if(output.length!=0)myApp.setState(output[2],output[1],output.length/5 - 1);
             client = false;
         }
     };
@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
         CThread.join();
     }
         catch (InterruptedException e) {
-        e.printStackTrace();;
+        e.printStackTrace();
     }
         if(output.length<=5){
             /**Error Dialog*/
@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
         /**custom star*/
         RatingBar mRatingBar =findViewById(R.id.ratingBar);
         mRatingBar.setStarCount(5);
-        System.out.println("rating     "+myApp.starRating());
+//        System.out.println("rating     "+myApp.starRating());
         mRatingBar.setStar(myApp.starRating());
 
         /**Text*/
@@ -187,15 +187,16 @@ public class MainActivity extends Activity {
         iv_image = findViewById(R.id.keywordbox);
         FirebaseStorage storage = FirebaseStorage.getInstance("gs://ttks-161718.appspot.com/");
         StorageReference storageRef = storage.getReference();
-        storageRef.child(output[0]).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext())
-                .load(uri)
-                .into(iv_image)).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(getApplicationContext(), "실패",Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        if(output.length>0) {
+            storageRef.child(output[0]).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext())
+                    .load(uri)
+                    .into(iv_image)).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull @NotNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
     class BtnOnClickListener implements Button.OnClickListener{
         @Override
