@@ -4,6 +4,8 @@ from collections import Counter
 from wordcloud import WordCloud
 import pymysql as db
 import matplotlib.pyplot as plt
+import numpy as np
+
 
 local = 'dbtest.cuslvraxrcdc.ap-northeast-2.rds.amazonaws.com'
 con = db.connect(
@@ -45,10 +47,23 @@ def get_noun(news):
 
     return noun_list
 
+def color_func(word, font_size, position,orientation,random_state=None, **kwargs):
+    return("hsl({:d},{:d}%, {:d}%)".format(np.random.randint(240,300),
+                                           np.random.randint(60,100),
+                                           np.random.randint(40,60)))
+
 def visualize(noun_list):
-    wc = WordCloud(font_path='./namsan.ttf', background_color="white",width=1000,height=1000,max_words=100,max_font_size=300)
+    wc = WordCloud(font_path='./namsan.ttf', 
+                   background_color="white",
+                   width=1000,
+                   height=1000,
+                   max_words=100,
+                   max_font_size=300,
+                   color_func = color_func)
     wc.generate_from_frequencies(dict(noun_list))
     wc.to_file('keyword.png')
+    plt.imshow(wc.to_array(),interpolation="bilinear")
+    plt.show()
 
 def excuteMining(maxLen,barcode):
     review_list = [x[0] for x in fetchReview(barcode)]
