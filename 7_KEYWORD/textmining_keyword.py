@@ -23,6 +23,12 @@ def insert_db(link,barcode):
     link=link.replace("/view?usp=sharing","")
     cur_tm.execute(sql_miningLink,(link,barcode))
 
+
+def tts_db(ttsStr,barcode):
+    sql_tts="""UPDATE product SET tts=%s WHERE barcord_id = %s """
+    cur_tm.execute(sql_tts,(ttsStr,barcode))
+
+
 def fetchReview(codeNum):
     sel_rev = """select contents from review where barcord_id = %s"""
     cur_tm.execute(sel_rev, [codeNum])
