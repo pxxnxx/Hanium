@@ -43,6 +43,7 @@ public class ScannerActivity extends AppCompatActivity {
                 Client.cam = true;
                 MainActivity.client = true;
                 intent_nxt = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent_nxt);
             }
             else {
                 Client.modelNum = re;
@@ -52,10 +53,16 @@ public class ScannerActivity extends AppCompatActivity {
                         Client.main();
                     }
                 };
+                try {
+                    CThread.join();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Client.needMatch = false;
-                intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
+                //intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
             }
-            startActivity(intent_nxt);
+            //startActivity(intent_nxt);
             finish();
         }
 

@@ -66,10 +66,10 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.deviceConDiscon:
                     if(!deviceBtn.isSelected()){
                         deviceBtn.setSelected(true);
-//                        Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
-//                        startActivity(intent);
-                        String con_info="똑쇼디바이스 연결\nID : ";
-                        con_info+="000000";
+                        Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
+                        startActivity(intent);
+                        String con_info = "똑쇼디바이스 연결\nID : 00000";
+                        con_info += Client.modelNum;
                         info.setText(con_info);
                         icon.setImageResource(R.drawable.device);
                     }
@@ -81,10 +81,10 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.searchProduct:
-                    //Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
-                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
+                    //Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    break;
+                    //break;
                 case R.id.lastestReview:
                     finish();
                     break;
