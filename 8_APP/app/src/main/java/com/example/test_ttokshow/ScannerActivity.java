@@ -47,19 +47,17 @@ public class ScannerActivity extends AppCompatActivity {
             }
             else {
                 Client.modelNum = re;
+                HomeActivity.info.setText("똑쇼디바이스 연결\nID : "+re);
+                Client.cam = false;
                 Client.needMatch = true;
                 Thread CThread = new Thread() {
                     public void run() {
                         Client.main();
                     }
                 };
-                try {
-                    CThread.join();
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Client.needMatch = false;
+                CThread.start();
+//                while (Client.needMatch)
+//                    continue;
                 //intent_nxt= new Intent(getApplicationContext(),HomeActivity.class);
             }
             //startActivity(intent_nxt);

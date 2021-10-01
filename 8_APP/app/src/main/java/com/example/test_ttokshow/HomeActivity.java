@@ -23,7 +23,7 @@ import static android.speech.tts.TextToSpeech.ERROR;
 public class HomeActivity extends AppCompatActivity {
     private ImageButton deviceBtn;
     private ImageButton ttsBtn;
-    private TextView info;
+    static TextView info;
     private ImageView icon;
     staticItem myApp;
     @Override
@@ -64,14 +64,17 @@ public class HomeActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.deviceConDiscon:
-                    if(!deviceBtn.isSelected()){
+                    if(!deviceBtn.isSelected()) {
                         deviceBtn.setSelected(true);
-                        Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
                         startActivity(intent);
-                        String con_info = "똑쇼디바이스 연결\nID : 00000";
-                        con_info += Client.modelNum;
-                        info.setText(con_info);
-                        icon.setImageResource(R.drawable.device);
+
+//                        while (Client.notEndMatch)
+//                            continue;
+//                        String con_info = "똑쇼디바이스 연결\nID : 00000";
+//                        con_info += Client.modelNum;
+//                        info.setText(con_info);
+//                        icon.setImageResource(R.drawable.device);
                     }
                     else{
                         deviceBtn.setSelected(false);

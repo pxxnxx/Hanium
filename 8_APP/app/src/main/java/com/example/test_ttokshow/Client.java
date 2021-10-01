@@ -16,10 +16,10 @@ import java.nio.charset.StandardCharsets;
 public class Client extends AppCompatActivity {
         private static String[] output;
         static String send = "5012501081100";
-        static String token = "duVCxvvKRHetPGmc-qO-ti:APA91bGX4POqrviJtSyK8yrtsKeam7tMWvsbd8f_sQjXIHxJYTD8xwF8jjnRDeXRvJoICVO6w72TVW2ZZDJ-rYsyLvu-agWx3kPddsJ-8ND0LArg16h7QvOf9s83ur_oqiCsvX2SlCbx";
-        static String modelNum = "0#";
-        static Boolean cam = true;
-        static Boolean needMatch = false;
+        static String token = "#duVCxvvKRHetPGmc-qO-ti:APA91bGX4POqrviJtSyK8yrtsKeam7tMWvsbd8f_sQjXIHxJYTD8xwF8jjnRDeXRvJoICVO6w72TVW2ZZDJ-rYsyLvu-agWx3kPddsJ-8ND0LArg16h7QvOf9s83ur_oqiCsvX2SlCbx";
+        static String modelNum = "00000001";
+        static Boolean cam = false;
+        static Boolean needMatch = true;
         public static void main(String... args) {
             try (Socket client = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress("18.216.76.16", 9999);
@@ -37,9 +37,9 @@ public class Client extends AppCompatActivity {
                             b.putInt(data.length);
                             sender.write(b.array(),0,4);
                             sender.write(data);
-
+                            needMatch = false;
                         }
-                        if (cam && !needMatch) { //!needMatch 오류 제어
+                        if (cam) { //!needMatch 오류 제어
                             byte[] data = send.getBytes();
                             ByteBuffer b = ByteBuffer.allocate(4);
                             b.order(ByteOrder.LITTLE_ENDIAN);
@@ -48,6 +48,7 @@ public class Client extends AppCompatActivity {
                             sender.write(data);
                             cam = false;
                         }
+
                         byte[] data = new byte[4];
                         //sender.write(data,0,4);
                         receiver.read(data, 0, 4);
