@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
     public ArrayList<ItemData> list;
     public ArrayList<ItemData> list_d;
     public String[] output = new String[0];
-    public static Boolean client = true;
+    public static Boolean client = false;
     private TextToSpeech TTS;
 
 
@@ -87,13 +87,23 @@ public class MainActivity extends Activity {
             client = false;
         }
     };
-        CThread.start();
-        try {
-        CThread.join();
-    }
-        catch (InterruptedException e) {
-        e.printStackTrace();
-    }
+        if (client) {
+            CThread.start();
+            try {
+                CThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            output = Client.getOutput();
+            for (int i=0; i < (output.length / 5)-1; i++) {
+                item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
+                if (i < 10) list_s.add(item);
+                list.add(item);
+            }
+            if(output.length!=0)myApp.setState(output[2],output[1],output.length/5 - 1);
+        }
         if(output.length<=5){
             /**Error Dialog*/
             dialog = new Dialog(MainActivity.this);       // Dialog 초기화
