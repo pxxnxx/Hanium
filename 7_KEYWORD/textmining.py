@@ -48,12 +48,12 @@ def get_noun(news):
     return noun_list
 
 def color_func(word, font_size, position,orientation,random_state=None, **kwargs):
-    return("hsl({:d},{:d}%, {:d}%)".format(np.random.randint(240,300),
-                                           np.random.randint(60,100),
+    return("hsl({:d},{:d}%, {:d}%)".format(np.random.randint(270,300),
+                                           np.random.randint(70,100),
                                            np.random.randint(40,60)))
 
 def visualize(noun_list):
-    wc = WordCloud(font_path='./namsan.ttf', 
+    wc = WordCloud(font_path='./namsan.ttf',
                    background_color="white",
                    width=1000,
                    height=1000,

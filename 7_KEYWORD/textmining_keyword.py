@@ -14,7 +14,7 @@ con = db.connect(
     charset='utf8'
 )
 
-cur_tm=con.cursor()
+#cur_tm=con.cursor()
 
 def insert_db(link,barcode):
     #UPDATE 테이블명 SET 컬럼1 = 수정값1 [, 컬럼2 = 수정값2 ...] [WHERE 조건];
@@ -76,7 +76,9 @@ def excuteMining(maxLen,barcode):
     # newVisualize(get_noun(strReview))
     print("caculating is done:)")
     #res.sort(key=lambda x : x[1],reverse=True)
-    print(res)
+    res_str=res[0][0] + "#" + res[1][0] + "#" + res[2][0]
+    print(res_str)
+    tts_db(res_str,barcode)
 
 
 
@@ -97,5 +99,10 @@ if __name__=="__main__":
     con.commit()
     cur_tm.close()
     """
+
+    cur_tm = con.cursor()
     #excuteMining(1000000,"8801007160337")
     excuteMining(1000000, "5410126116953")
+
+    con.commit()
+    cur_tm.close()
