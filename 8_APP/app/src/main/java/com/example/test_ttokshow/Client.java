@@ -61,12 +61,12 @@ public class Client extends AppCompatActivity {
 
                         String msg = new String(data, "UTF-8");
                         output = msg.split("#");
-                        System.out.println("ABC" + output.length);
-                        System.out.println(output[0]);
-                        System.out.println(output[1]);
-                        System.out.println(output[2]);
-                        System.out.println(output[3]);
-                        System.out.println(output[4]);
+//                        System.out.println("ABC" + output.length);
+//                        System.out.println(output[0]);
+//                        System.out.println(output[1]);
+//                        System.out.println(output[2]);
+//                        System.out.println(output[3]);
+//                        System.out.println(output[4]);
 
                     }
 
