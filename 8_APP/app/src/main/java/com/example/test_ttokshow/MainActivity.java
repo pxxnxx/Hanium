@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
     public String[] output = new String[0];
     public static Boolean client = false;
     private TextToSpeech TTS;
+    private String TTSText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class MainActivity extends Activity {
                 Log.d("TTS", "onCreate:"+myApp.isTts());
 //            TTS.setPitch((float) 0.1);      // 음량
 //            TTS.setSpeechRate((float) 1.0); // 재생속도
-                String TTSText = 상품이름 + "을 인식하였습니다." + "  리뷰개수 " + 100 + "개  총 평점" + 4.56 + "점  리뷰 중 자주 나온 단어" + 전수민, 경찰, 숨찐 + " 상위 리뷰" + 좋아용, 직원들 좋아해요, 할인된가격이 좋아요;
+                TTSText = myApp.getProName() + "을 인식하였습니다." + "  리뷰개수 " + myApp.getCnt() + "개  총 평점" + myApp.getAvg() + "점  리뷰 중 자주 나온 단어" + "word" ;
                 TTS.speak(TTSText, TextToSpeech.QUEUE_FLUSH,null,null);
             }
         }
@@ -245,7 +246,7 @@ public class MainActivity extends Activity {
                     startActivity(scan);
                     break;
                 case R.id.ttsBtn:
-                    TTS.speak("apple and banana", TextToSpeech.QUEUE_FLUSH,null,null);
+                    TTS.speak(TTSText, TextToSpeech.QUEUE_FLUSH,null,null);
                     break;
                 case R.id.home_btn:
                     Intent intent_home = new Intent(getApplicationContext(), HomeActivity.class);

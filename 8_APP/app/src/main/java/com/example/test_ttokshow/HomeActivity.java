@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
                     //Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    //break;
+                    break;
                 case R.id.lastestReview:
                     finish();
                     break;
