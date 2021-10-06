@@ -59,7 +59,6 @@ public class MainActivity extends Activity {
     public static Boolean client = false;
     private TextToSpeech TTS;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +128,8 @@ public class MainActivity extends Activity {
                 Log.d("TTS", "onCreate:"+myApp.isTts());
 //            TTS.setPitch((float) 0.1);      // 음량
 //            TTS.setSpeechRate((float) 1.0); // 재생속도
-                TTS.speak("welcome", TextToSpeech.QUEUE_FLUSH,null,null);
+                String TTSText = 상품이름 + "을 인식하였습니다." + "  리뷰개수 " + 100 + "개  총 평점" + 4.56 + "점  리뷰 중 자주 나온 단어" + 전수민, 경찰, 숨찐 + " 상위 리뷰" + 좋아용, 직원들 좋아해요, 할인된가격이 좋아요;
+                TTS.speak(TTSText, TextToSpeech.QUEUE_FLUSH,null,null);
             }
         }
 
