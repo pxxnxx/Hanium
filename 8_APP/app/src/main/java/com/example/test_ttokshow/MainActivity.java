@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
                     if (i < 10) list_s.add(item);
                     list.add(item);
                 }
-                if(output.length!=0)myApp.setState(output[2],output[1],output.length/5 - 1);
+                if(output.length!=0)myApp.setState(output[2],output[1],output[0],output.length/5 - 1);
             client = false;
         }
     };
@@ -95,14 +95,14 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        else {
+        else { /**왜 필요한거?**/
             output = Client.getOutput();
             for (int i=0; i < (output.length / 5)-1; i++) {
                 item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
                 if (i < 10) list_s.add(item);
                 list.add(item);
             }
-            if(output.length!=0)myApp.setState(output[2],output[1],output.length/5 - 1);
+            if(output.length!=0)myApp.setState(output[2],output[1],output[0],output.length/5 - 1);
         }
         if(output.length<=5){
             /**Error Dialog*/
@@ -129,7 +129,8 @@ public class MainActivity extends Activity {
                 Log.d("TTS", "onCreate:"+myApp.isTts());
 //            TTS.setPitch((float) 0.1);      // 음량
 //            TTS.setSpeechRate((float) 1.0); // 재생속도
-                TTSText = myApp.getProName() + "을 인식하였습니다." + "  리뷰개수 " + myApp.getCnt() + "개  총 평점" + myApp.getAvg() + "점  리뷰 중 자주 나온 단어" + "word" ;
+                TTSText = myApp.getProName() + "을 인식하였습니다." + "  리뷰개수 " + myApp.getCnt() + "개" +
+                        " 총 평점" + myApp.getAvg() + "점  리뷰 중 자주 나온 단어" + myApp.getWord();
                 TTS.speak(TTSText, TextToSpeech.QUEUE_FLUSH,null,null);
             }
         }

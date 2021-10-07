@@ -15,11 +15,11 @@ import java.nio.charset.StandardCharsets;
 
 public class Client extends AppCompatActivity {
         private static String[] output;
-        static String send = "5012501081100";
+        static String send = "";
         static String token = "#duVCxvvKRHetPGmc-qO-ti:APA91bGX4POqrviJtSyK8yrtsKeam7tMWvsbd8f_sQjXIHxJYTD8xwF8jjnRDeXRvJoICVO6w72TVW2ZZDJ-rYsyLvu-agWx3kPddsJ-8ND0LArg16h7QvOf9s83ur_oqiCsvX2SlCbx";
         static String modelNum = "00000001";
         static Boolean cam = false;
-        static Boolean needMatch = true;
+        static Boolean needMatch = false;
         public static void main(String... args) {
             try (Socket client = new Socket()) {
                 InetSocketAddress ipep = new InetSocketAddress("18.216.76.16", 9999);
@@ -61,12 +61,12 @@ public class Client extends AppCompatActivity {
 
                         String msg = new String(data, "UTF-8");
                         output = msg.split("#");
-//                        System.out.println("ABC" + output.length);
-//                        System.out.println(output[0]);
-//                        System.out.println(output[1]);
-//                        System.out.println(output[2]);
-//                        System.out.println(output[3]);
-//                        System.out.println(output[4]);
+                        System.out.println("ABC" + output.length);
+                        System.out.println(output[0]);
+                        System.out.println(output[1]);
+                        System.out.println(output[2]);
+                        System.out.println(output[3]);
+                        System.out.println(output[4]);
 
                     }
 

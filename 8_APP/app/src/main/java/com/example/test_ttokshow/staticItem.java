@@ -5,6 +5,7 @@ import android.app.Application;
 public class staticItem extends Application {
     private String avg;
     private String proName;
+    private String word;
     private int cnt;
     private boolean tts=true;
 
@@ -14,6 +15,7 @@ public class staticItem extends Application {
         avg = "0.0";
         proName=" ";
         cnt=0;
+        word = " ";
         super.onCreate();
     }
 
@@ -27,10 +29,11 @@ public class staticItem extends Application {
     public void setTts(boolean tts) {
         this.tts = tts;
     }
-    public void setState(String avg, String proName, int cnt){
+    public void setState(String avg, String proName, String word, int cnt){
         this.avg=avg;
         this.proName=proName;
         this.cnt=cnt;
+        this.word=word;
     }
     public String getProName(){
         return proName;
@@ -39,6 +42,8 @@ public class staticItem extends Application {
     public String getAvg() {
         return avg;
     }
+
+    public String getWord() {return word; }
 
     public int getCnt() {
         return cnt;
