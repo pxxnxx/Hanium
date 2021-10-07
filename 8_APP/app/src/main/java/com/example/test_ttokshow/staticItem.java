@@ -50,8 +50,7 @@ public class staticItem extends Application {
     }
 
     public float starRating(){
-        float fAvg=0.0f;
-        if(avg.equals(""))fAvg= Float.parseFloat(avg);
+        float fAvg= Float.parseFloat(avg);
         int d= (int)fAvg;
         float f = fAvg-d;
         float half= (float)0.5;
