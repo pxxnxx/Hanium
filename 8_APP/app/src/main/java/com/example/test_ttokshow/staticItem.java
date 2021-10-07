@@ -46,7 +46,7 @@ public class staticItem extends Application {
     public String getWord() {return word; }
 
     public int getCnt() {
-        return cnt;
+        return cnt*8;
     }
 
     public float starRating(){
