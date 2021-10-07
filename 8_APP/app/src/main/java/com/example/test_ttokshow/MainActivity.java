@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
                 String[] out = Client.getOutput();
                 output = out;
                 for (int i=0; i < (output.length / 5)-1; i++) {
-                    item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
+                    item = new ItemData(output[5*i + 7], output[5*i + 8], output[5*i + 4], output[5*i + 5], output[5*i + 6]);
                     if (i < 10) list_s.add(item);
                     list.add(item);
                 }
@@ -95,7 +95,9 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        else { /**왜 필요한거?**/
+        /*
+        else { //왜 필요한거?
+
             output = Client.getOutput();
             for (int i=0; i < (output.length / 5)-1; i++) {
                 item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
@@ -104,6 +106,7 @@ public class MainActivity extends Activity {
             }
             if(output.length!=0)myApp.setState(output[2],output[1],output[0],output.length/5 - 1);
         }
+        */
         if(output.length<=5){
             /**Error Dialog*/
             dialog = new Dialog(MainActivity.this);       // Dialog 초기화
@@ -200,7 +203,7 @@ public class MainActivity extends Activity {
         FirebaseStorage storage = FirebaseStorage.getInstance("gs://ttks-161718.appspot.com/");
         StorageReference storageRef = storage.getReference();
         if(output.length>0) {
-            storageRef.child(output[0]).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext())
+            storageRef.child(output[3]+".jpg").getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext())
                     .load(uri)
                     .into(iv_image)).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -228,7 +231,7 @@ public class MainActivity extends Activity {
                         pro_image= findViewById(R.id.productImggggg);
                         FirebaseStorage storage2 = FirebaseStorage.getInstance("gs://ttks-161718.appspot.com/");
                         StorageReference storageRef = storage2.getReference();
-                        storageRef.child("pro_img/"+output[0]+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        storageRef.child("pro_img/"+output[3]+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Glide.with(getApplicationContext())
