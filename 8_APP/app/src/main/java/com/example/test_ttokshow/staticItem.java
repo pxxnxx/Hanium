@@ -46,12 +46,11 @@ public class staticItem extends Application {
     public String getWord() {return word; }
 
     public int getCnt() {
-        return cnt*8;
+        return cnt*6;
     }
 
     public float starRating(){
-        float fAvg=0.0f;
-        if(avg.equals(""))fAvg= Float.parseFloat(avg);
+        float fAvg= Float.parseFloat(avg);
         int d= (int)fAvg;
         float f = fAvg-d;
         float half= (float)0.5;
@@ -59,5 +58,4 @@ public class staticItem extends Application {
         else if(f<=0.25)return (float)d;
         else return (float)d+half;
     }
-
 }

@@ -47,7 +47,8 @@ public class ScannerActivity extends AppCompatActivity {
             }
             else {
                 Client.modelNum = re;
-                HomeActivity.info.setText("똑쇼디바이스 연결\nID : "+re);
+                HomeActivity.infoMessage = "똑쇼디바이스 연결\nID : TS"+re;
+                HomeActivity.info.setText(HomeActivity.infoMessage);
                 Client.cam = false;
                 Client.needMatch = true;
                 Thread CThread = new Thread() {

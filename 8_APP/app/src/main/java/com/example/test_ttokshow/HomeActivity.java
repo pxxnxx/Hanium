@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton deviceBtn;
     private ImageButton ttsBtn;
     static TextView info;
+    static String infoMessage = "똑쇼 디바이스가\n연결되지 않았습니다.";
     private ImageView icon;
     staticItem myApp;
     @Override
@@ -37,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
 
         /**TextView*/
         info=findViewById(R.id.comment);
-        info.setText("똑쇼 디바이스가\n연결되지 않았습니다.");
+        info.setText(infoMessage);
 
         /**ImageView*/
         icon=findViewById(R.id.comIcon);
@@ -79,7 +80,8 @@ public class HomeActivity extends AppCompatActivity {
                     else{
                         deviceBtn.setSelected(false);
                         //TODO 연결해제
-                        info.setText("똑쇼 디바이스가\n연결되지 않았습니다.");
+                        infoMessage = "똑쇼 디바이스가\n연결되지 않았습니다.";
+                        info.setText(infoMessage);
                         icon.setImageResource(R.drawable.warning);
                     }
                     break;

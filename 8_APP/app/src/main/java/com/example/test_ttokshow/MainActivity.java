@@ -95,18 +95,18 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        /*
+
         else { //왜 필요한거?
 
             output = Client.getOutput();
             for (int i=0; i < (output.length / 5)-1; i++) {
-                item = new ItemData(output[5*i + 6], output[5*i + 7], output[5*i + 3], output[5*i + 4], output[5*i + 5]);
+                item = new ItemData(output[5*i + 7], output[5*i + 8], output[5*i + 4], output[5*i + 5], output[5*i + 6]);
                 if (i < 10) list_s.add(item);
                 list.add(item);
             }
             if(output.length!=0)myApp.setState(output[2],output[1],output[0],output.length/5 - 1);
         }
-        */
+        
         if(output.length<=5){
             /**Error Dialog*/
             dialog = new Dialog(MainActivity.this);       // Dialog 초기화
